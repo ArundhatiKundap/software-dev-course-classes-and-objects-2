@@ -6,16 +6,21 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.example.Student;
 
 public class BetterStudentManager {
     public List<Student> students = new ArrayList<>();
 
     public void addStudent(String name, double grade) {
         // This method should add a new student to the list of students
+        Student s = new Student(name,grade);
+        students.add(s);
     }
 
     public void removeStudent(String name) {
         // This method should remove the student with the given name from the list of students
+
+        students.removeIf(s -> s.name.equals(name));
     }
 
     public String getStudentList() {
@@ -29,6 +34,19 @@ public class BetterStudentManager {
         // looping through the list of students
         //
         // Replace the following line with your implementation
-        return null;
+        if(students.isEmpty()) {
+            return null;
+        }else{
+            StringBuilder result = new StringBuilder();
+            for (Student student : students) {
+                result.append(student.name)
+                        .append(" ")
+                        .append(student.grade)
+                        .append("\n");
+            }
+
+            return result.toString();
+        }
+
     }
 }
